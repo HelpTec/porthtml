@@ -139,6 +139,7 @@ nav ul.menu li {
     grid-template-areas:  "infoleft infoleft foco foco foco foco foco inforight inforight";    
     background-color: #0a1728;
 }
+/*ubicación, tamaño y difuminado para los 3 compos del bodygrid*/
 .foco,
 .focoapagado,
 .backgroundhtml,
@@ -154,6 +155,7 @@ nav ul.menu li {
   mask-composite: intersect;
   -webkit-mask-composite: destination-in;
 }
+/*ubicaciones en el grid*/
 .backgroundhtml,
 .frontcartel{
     grid-area: infoleft;
@@ -162,6 +164,7 @@ nav ul.menu li {
 .backcartel{
     grid-area: inforight;
 }
+/*desaturado e index para los backgrounds laterales, se repite un poco de codigo*/
 .backgroundhtml,
 .backgroundpython{
     height: 90%;
@@ -177,18 +180,29 @@ nav ul.menu li {
   mask-composite: intersect;
   -webkit-mask-composite: destination-in;
 }
+/*tamaños y ubicación de los carteles*/
 .backcartel,
 .frontcartel{
-    color: white;
     font-size: 3em;
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
     align-self: center;
     justify-content: space-between;
     text-align: center;
     z-index: 2;
     opacity: 0.1;
+}
+/*letras y colores individuales*/
+.backcartel{
+  color: #ccc;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px #666;
+}
+.frontcartel{
+  color: #7df9ff;
+  text-shadow: 0 0 10px #7df9ff;
+  font-style: italic;
+}
+#subt{
+    font-size: 1em;
 }
 .foco,
 .focoapagado{
