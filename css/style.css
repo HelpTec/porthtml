@@ -188,6 +188,7 @@ nav ul.menu li {
     justify-content: space-between;
     text-align: center;
     z-index: 2;
+    opacity: 0.1;
 }
 .foco,
 .focoapagado{
@@ -197,11 +198,19 @@ nav ul.menu li {
     align-self: end;
 }
 .foco{
-    display: block;
-}
-.focoapagado{
     display: none;
 }
+.focoapagado{
+    display: block;
+}
+/*transicion para que no parezca tan brusco*/
+.backgroundhtml,
+.backgroundpython,
+.backcartel,
+.frontcartel {
+  transition: filter 0.6s ease, opacity 0.6s ease;
+}
+/*mediaquerys para el resto*/
 @media (max-width: 768px){
     .bodygrid{
         grid-template-columns: 1fr;

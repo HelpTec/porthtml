@@ -13,7 +13,7 @@
     <div class="navgrid">
         <nav>
             <span class="hamburger">&#9776;</span>
-            <img src="img/logo.png" class="logo" alt="logo">
+            <img src="img/logo.png" class="logo switchButton" alt="logo">
             <ul class="menu">
                 <li><a href="">home</a></li>
                 <li><a href="">bio</a></li>
@@ -36,8 +36,8 @@
         <img src="img/codingbckpython.png" class="backgroundpython" alt="backgroundpython">
         <h1 class="backcartel">BACK-END DEVELOPER</h1>
         <h1 class="frontcartel">FRONT-END DEVELOPER</h1>
-        <img src="img/idea.png" class="foco" alt="fotocentro">
-        <img src="img/focoapagado.png" class="focoapagado" alt="fotocentro">
+        <img src="img/idea.png" class="foco switchButton" alt="fotocentro">
+        <img src="img/focoapagado.png" class="focoapagado switchButton" alt="fotocentro">
 
 
     </div>
@@ -48,13 +48,13 @@
     const imgFocoApagado = document.querySelector(".focoapagado");
     const backgroundImages = document.querySelectorAll(".backgroundpython, .backgroundhtml");
     const titles = document.querySelectorAll(".backcartel, .frontcartel");
-    const switchButton = document.querySelector(".logo");
+    const switchButtons = document.querySelectorAll(".switchButton");
 
     hamburger.addEventListener("click", () => {
         nav.classList.toggle("open");
     })
-    switchButton.addEventListener("click", () => {
-    if (imgFocoEncendido.style.display !== "none") {
+    function encender() {
+      if (window.getComputedStyle(imgFocoEncendido).display !== "none") {
       imgFocoEncendido.style.display = "none";
       imgFocoApagado.style.display = "block";
       backgroundImages.forEach((cartel) => {
@@ -72,8 +72,17 @@
       titles.forEach((back) => {
         back.style.opacity = "1";
       })
-    }
+    }}
+    switchButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        encender()    
     });
+  });
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    encender();
+  }, 800);
+  });
     </script>
 </body>
 </html>
