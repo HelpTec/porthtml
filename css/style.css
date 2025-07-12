@@ -132,11 +132,11 @@ nav ul.menu li {
 
 /*bodygrid*/
 .bodygrid{
-    height: 90vh;
+    height: 89vh;
     width: 100vw;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-areas:  "infoleft infoleft foco foco foco foco foco inforight inforight";    
+    grid-template-areas:  "infoleft infoleft centergrid centergrid centergrid centergrid centergrid inforight inforight";    
     background-color: #0a1728;
 }
 /*ubicación, tamaño y difuminado para los 3 compos del bodygrid*/
@@ -167,16 +167,28 @@ nav ul.menu li {
 /*desaturado e index para los backgrounds laterales, se repite un poco de codigo*/
 .backgroundhtml,
 .backgroundpython{
-    height: 90%;
+    height: 100%;
     filter: brightness(0.3);
     z-index: 0;
     align-self: end;
-      mask-image: 
-    linear-gradient(to top, transparent 0%, black 60%, black 70%, transparent 100%),
-    linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
-  -webkit-mask-image: 
-    linear-gradient(to top, transparent 0%, black 60%, black 70%, transparent 100%),
-    linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
+}
+.backgroundhtml{
+  mask-image:
+  linear-gradient(to top, transparent 0%, black 60%, black 80%, transparent 100%),
+  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
+  -webkit-mask-image:  
+  linear-gradient(to top, transparent 0%, black 60%, black 80%, transparent 100%),
+  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: destination-in;
+}
+.backgroundpython{
+  mask-image:
+  linear-gradient(to top, transparent 0%, black 60%, black 70%, transparent 100%),
+  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
+  -webkit-mask-image:  
+  linear-gradient(to top, transparent 0%, black 60%, black 70%, transparent 100%),
+  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
   mask-composite: intersect;
   -webkit-mask-composite: destination-in;
 }
@@ -204,12 +216,23 @@ nav ul.menu li {
 #subt{
     font-size: 1em;
 }
+.centergrid{
+    grid-area: centergrid;
+    display: grid;
+    height: 100%;
+    max-height: 85vh;
+    grid-template-rows: 70% 20% 10%;
+    grid-template-areas: 
+    "foco"
+    "nombre"
+    "subt";
+}
 .foco,
 .focoapagado{
     grid-area: foco;
-    height: 90%;
-    max-height: 89vh;
-    align-self: end;
+    height: 100%;
+    max-height: 80vh;
+    align-self: start;
 }
 .foco{
     display: none;
@@ -217,6 +240,23 @@ nav ul.menu li {
 .focoapagado{
     display: block;
 }
+.nombre {
+  grid-area: nombre;
+  text-align: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8em;
+  align-self: start;
+  z-index: 2;
+}
+.subt {
+  grid-area: subt;
+  text-align: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8em;
+}
+
 /*transicion para que no parezca tan brusco*/
 .backgroundhtml,
 .backgroundpython,
@@ -228,7 +268,10 @@ nav ul.menu li {
 @media (max-width: 768px){
     .bodygrid{
         grid-template-columns: 1fr;
-        grid-template-areas:  "foco"; 
+        grid-template-areas:  "centergrid"; 
+    }
+    .subt{
+      display: none;
     }
     .backgroundhtml,
     .backgroundpython{
