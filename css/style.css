@@ -221,11 +221,11 @@ nav ul.menu li {
     display: grid;
     height: 100%;
     max-height: 85vh;
-    grid-template-rows: 70% 20% 10%;
+    grid-template-rows: 70% 10% 20%;
     grid-template-areas: 
     "foco"
-    "nombre"
-    "subt";
+    "mid"
+    "nombtit";
 }
 .foco,
 .focoapagado{
@@ -240,23 +240,45 @@ nav ul.menu li {
 .focoapagado{
     display: block;
 }
-.nombre {
-  grid-area: nombre;
+.nombtit {
+  grid-area: nombtit;
+  align-self: flex-start;
   text-align: center;
-  color: white;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.8em;
-  align-self: start;
-  z-index: 2;
+  z-index: 3;
+  padding-top: 1vh;
 }
+.nombre,
 .subt {
-  grid-area: subt;
+  margin: 0;
   text-align: center;
   color: white;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.8em;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.nombre {
+  font-size: 2.5em;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.subt {
+  font-size: 1.3em;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Estado inicial oculto */
+.apagado {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Estado visible */
+.encendido {
+  opacity: 1;
+  transform: translateY(0);
+}
 /*transicion para que no parezca tan brusco*/
 .backgroundhtml,
 .backgroundpython,
@@ -268,7 +290,13 @@ nav ul.menu li {
 @media (max-width: 768px){
     .bodygrid{
         grid-template-columns: 1fr;
-        grid-template-areas:  "centergrid"; 
+        grid-template-areas:  "centergrid";
+    }
+    .centergrid{
+        grid-template-rows: 90% 10%;
+    }
+    .nombre{
+      font-size: 1em;
     }
     .subt{
       display: none;
