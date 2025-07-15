@@ -310,3 +310,23 @@ nav ul.menu li {
         display: none;
     }
 };
+
+/*template bio*/
+.biobodygrid{
+    height: 89vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:  "bioinfoleft bioinforight";    
+    background-color: #0a1728;
+}
+.bioinfoleft{
+  grid-area: bioinfoleft;
+  height: 100%;
+  width: 100%;
+}
+.bioinforigth{
+  grid-area: bioinfoleft;
+  height: 100%;
+  width: 100%;
+}
