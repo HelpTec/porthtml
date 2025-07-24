@@ -328,18 +328,17 @@ nav ul.menu li {
     "bioinfoleft2 bioinforight2"
     "bioinfoleft3 bioinforight3";
 }
-.biocard{
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+.biocard {
+  flex: 1 1 45%;
+  min-width: 300px;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
-.biocard img{
-  height: 100%;
-  max-height: 437px !important;
-}
+
 #bioinfoleft1{
   grid-area: bioinfoleft1;
 }
@@ -366,27 +365,76 @@ nav ul.menu li {
   opacity: 1;
 }
 
-.carousel-container button {
-  top: 50%;
-  transform: translateY(-50%);
-  background: #00000088;
-  color: white;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
+.fotoperf {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
-.carousel-container .prev {
+.carousel-container, .fotoperf {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.img-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1;
+}
+.text-carousel {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+}
+.text-slide {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.img-slide.active,
+.text-slide.active {
+  opacity: 1;
+  z-index: 0;
+}
+
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 1;
+}
+
+button.prev:hover,
+button.next:hover {
+  background-color: rgba(0,0,0,0.7);
+}
+
+button.prev {
   left: 10px;
 }
 
-.carousel-container .next {
+button.next {
   right: 10px;
-}
-.img-slide,
-.text-slide {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  display: none;
 }
