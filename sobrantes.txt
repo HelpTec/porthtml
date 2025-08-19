@@ -1,0 +1,39 @@
+
+    function encender() {
+      if (window.getComputedStyle(imgFocoEncendido).display !== "none") {
+      imgFocoEncendido.style.display = "none";
+      imgFocoApagado.style.display = "block";
+      nombre.classList.remove("encendido");
+      subtitulo.classList.remove("encendido");
+      nombre.classList.add("apagado");
+      subtitulo.classList.add("apagado");
+      backgroundImages.forEach((cartel) => {
+        cartel.style.filter = "brightness(0.4)";
+        })
+      titles.forEach((back) => {
+        back.style.opacity = "0.1";
+      })
+    } else {
+      imgFocoEncendido.style.display = "block";
+      imgFocoApagado.style.display = "none";
+      nombre.classList.remove("apagado");
+      subtitulo.classList.remove("apagado");
+      nombre.classList.add("encendido");
+      subtitulo.classList.add("encendido");
+      backgroundImages.forEach((cartel) => {
+        cartel.style.filter = "brightness(0.9)";
+        })
+      titles.forEach((back) => {
+        back.style.opacity = "1";
+      })
+    }}
+    switchButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        encender()    
+    });
+  });
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    encender();
+  }, 800);
+  });

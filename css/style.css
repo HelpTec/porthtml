@@ -49,7 +49,7 @@ nav{
     margin: 0;
 }
 nav img.logo{
-    height: 80%;
+    height: 100%;
     max-height: 70px;
     width: auto;
     max-width: 70px;
@@ -57,7 +57,6 @@ nav img.logo{
     margin: 0;
     vertical-align: baseline;
     margin-left: 10vw;
-    filter: invert(100%);
     cursor: pointer;
 }
 nav ul{
@@ -140,63 +139,33 @@ nav ul.menu li {
     height: 89vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-areas:  "infoleft infoleft centergrid centergrid centergrid centergrid centergrid inforight inforight";    
-    background-color: #0a1728;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:  
+    "infoleft infoleft centergrid centergrid centergrid inforight inforight";
 }
-/*ubicación, tamaño y difuminado para los 3 compos del bodygrid*/
-.foco,
-.focoapagado,
-.backgroundhtml,
-.backgroundpython {
+/*ubicación, tamaño y difuminado para los compos del bodygrid*/
+.center{
+  height: 100%;
   max-width: 100%;
-  justify-self: center;  
-  mask-image: 
-    linear-gradient(to top, transparent 0%, black 15%, black 85%, transparent 100%),
-    linear-gradient(to left, transparent 0%, black 15%, black 85%, transparent 100%);
   -webkit-mask-image: 
-    linear-gradient(to top, transparent 0%, black 15%, black 85%, transparent 100%),
-    linear-gradient(to left, transparent 0%, black 15%, black 85%, transparent 100%);
-  mask-composite: intersect;
-  -webkit-mask-composite: destination-in;
+    radial-gradient(96% 85% at right center, black 90%, transparent 100%);
+          mask-image: 
+    radial-gradient(96% 85% at right center, black 95%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+          mask-size: cover;
 }
+
 /*ubicaciones en el grid*/
-.backgroundhtml,
 .frontcartel{
-    grid-area: infoleft;
-}
-.backgroundpython,
-.backcartel{
     grid-area: inforight;
 }
-/*desaturado e index para los backgrounds laterales, se repite un poco de codigo*/
-.backgroundhtml,
-.backgroundpython{
-    height: 100%;
-    filter: brightness(0.3);
-    z-index: 0;
-    align-self: end;
+.backcartel{
+  grid-area: infoleft;
 }
-.backgroundhtml{
-  mask-image:
-  linear-gradient(to top, transparent 0%, black 60%, black 80%, transparent 100%),
-  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
-  -webkit-mask-image:  
-  linear-gradient(to top, transparent 0%, black 60%, black 80%, transparent 100%),
-  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
-  mask-composite: intersect;
-  -webkit-mask-composite: destination-in;
-}
-.backgroundpython{
-  mask-image:
-  linear-gradient(to top, transparent 0%, black 60%, black 70%, transparent 100%),
-  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
-  -webkit-mask-image:  
-  linear-gradient(to top, transparent 0%, black 60%, black 70%, transparent 100%),
-  linear-gradient(to left, transparent 0%, black 60%, black 70%, transparent 100%);
-  mask-composite: intersect;
-  -webkit-mask-composite: destination-in;
-}
+
 /*tamaños y ubicación de los carteles*/
 .backcartel,
 .frontcartel{
@@ -205,91 +174,48 @@ nav ul.menu li {
     justify-content: space-between;
     text-align: center;
     z-index: 2;
-    opacity: 0.1;
 }
 /*letras y colores individuales*/
 .backcartel{
-  color: #ccc;
   font-family: 'Courier New', monospace;
-  text-shadow: 0 0 5px #666;
+
 }
 .frontcartel{
-  color: #7df9ff;
-  text-shadow: 0 0 10px #7df9ff;
+
   font-style: italic;
 }
 #subt{
     font-size: 1em;
 }
+/*grid intermedia*/
 .centergrid{
     grid-area: centergrid;
     display: grid;
     height: 100%;
-    max-height: 85vh;
-    grid-template-rows: 70% 10% 20%;
+    width: 100%;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;   
+    grid-template-rows: 80% 20%;
     grid-template-areas: 
     "foco"
-    "mid"
     "nombtit";
 }
-.foco,
-.focoapagado{
-    grid-area: foco;
-    height: 100%;
-    max-height: 80vh;
-    align-self: start;
+#mainimg{
+  grid-area: foco;
 }
-.foco{
-    display: none;
+.mid{
+  grid-area: mid;
 }
-.focoapagado{
-    display: block;
-}
-.nombtit {
+.nombtit{
   grid-area: nombtit;
-  align-self: flex-start;
-  text-align: center;
-  z-index: 3;
-  padding-top: 1vh;
-}
-.nombre,
-.subt {
-  margin: 0;
-  text-align: center;
-  color: white;
-  align-items: center;
-  opacity: 0;
-  transform: translateY(0);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.nombre {
-  font-size: 2.5em;
-  font-family: 'Orbitron', sans-serif;
-}
-
-.subt {
-  font-size: 1.3em;
-  font-family: "Poppins", sans-serif;
-}
-
-/* Estado inicial oculto */
-.apagado {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-/* Estado visible */
-.encendido {
-  opacity: 1;
-  transform: translateY(0);
 }
 /*transicion*/
-.backgroundhtml,
 .backgroundpython,
 .backcartel,
 .frontcartel {
-  transition: filter 0.6s ease, opacity 0.6s ease;
+  transition: filter 0.6s ease;
 }
 /*mediaquerys para el resto*/
 @media (max-width: 768px){
