@@ -139,6 +139,7 @@ nav ul.menu li {
     height: 89vh;
     width: 100vw;
     display: grid;
+    align-items: start;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: auto;
     grid-template-areas:  
@@ -181,7 +182,6 @@ nav ul.menu li {
 
 }
 .frontcartel{
-
   font-style: italic;
 }
 #subt{
@@ -193,23 +193,30 @@ nav ul.menu li {
     display: grid;
     height: 100%;
     width: 100%;
-    align-self: center;
-    justify-self: center;
+    align-self: end;
+    justify-self: end;
     align-items: center;
     justify-content: center;   
-    grid-template-rows: 80% 20%;
-    grid-template-areas: 
+    grid-template-rows: 3% 57% 18%;
+    grid-template-areas:
+    "start" 
     "foco"
     "nombtit";
 }
 #mainimg{
   grid-area: foco;
 }
-.mid{
-  grid-area: mid;
+.start{
+  grid-area: start;
 }
 .nombtit{
   grid-area: nombtit;
+  text-align: center;
+  line-height: 0.7;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3em;
 }
 /*transicion*/
 .backgroundpython,
