@@ -58,7 +58,6 @@ nav img.logo{
     vertical-align: baseline;
     margin-left: 10vw;
     cursor: pointer;
-    filter: invert(100%);
 }
 nav ul{
     list-style-type: none;
@@ -83,13 +82,19 @@ nav ul.nets img.logo, .logohamburguer{
     margin-left: 0;
     margin-top: 2vh;
 }
-nav ul.menu li a {
+nav ul.menu li a, nav p {
     color: white;
     text-decoration: none;
     cursor: pointer;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+nav ul.menu li a {
+  font-size: 0.8rem;
+}
+nav p{
+  padding-left: 3rem;
 }
 .hamburger {
     display: none;
@@ -142,10 +147,12 @@ nav ul.menu li {
 .bodygrid{
     height: 89vh;
     width: 100vw;
+    background-image: url(/img/fondoondulado.png);
     display: grid;
-    align-items: start;
-    background-color: black;
-    grid-template-columns: 0.25fr 0.75fr;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    grid-template-columns: 0.4fr 0.6fr;
     grid-template-areas:  
     "leftpanel rightpanel";
 }
@@ -154,7 +161,15 @@ nav ul.menu li {
   height: 100%;
 }
 .leftpanel{
-  background-color: blue;
+  color: white;
+  max-width: 600px;
+  max-height: 400px;
+  border-radius: 2rem;
+  box-shadow: 
+  -.5rem .8rem .8rem .3rem rgba(0, 0, 0, 0.453), 
+  -0.2rem 0.1rem .8rem .2rem rgba(255, 255, 255, 0.064),
+  inset 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.25),
+  inset -0.5rem -0.5rem 0.3rem rgba(255, 255, 255, 0.25);
   grid-area: leftpanel;
   display: grid;
   grid-template-columns: 1fr;
@@ -164,28 +179,73 @@ nav ul.menu li {
   "center"
   "end";
 }
-.rightpanel{
-  background-color: green;
-  grid-area: rightpanel;
-}
 .start{
   grid-area: start;
-  background-color: white;
+  text-align: start;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 2rem;
+  text-align: center;
 }
 .center{
   grid-area: center;
-  background-color: red;
 }
 .end{
   grid-area: end;
-  background-color: white;
+}
+.rightpanel{
+  grid-area: rightpanel;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  height: 89vh;
+}
+.capi{
+  grid-column: 3 / 8;
+  grid-row: 3 / 8;
+}
+.auri{
+  grid-column: 2 / span 2;
+  grid-row: 3 / span 2;
+}
+.birome{
+  grid-column: 5 / span 1;
+  grid-row: 2 / span 1;
+}
+.cafe{
+  grid-column: 2 / span 1;
+  grid-row: 6 / span 1;
+}
+.anteojos{
+  grid-column: 7 / span 1;
+  grid-row: 3 / span 1;
+}
+.capi img, .auri img, .birome img, .anteojos img, .cafe img{
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.rightpanel img{
-  mask-image: linear-gradient(to right, transparent 1%, black 20%);
+.auri, .birome, .anteojos, .cafe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* animación suave */
+  cursor: pointer; /* indica que es clickeable */
 }
-.leftpanel img{
-  mask-image: linear-gradient(to left, transparent 1%, black 20%);
+
+.auri:hover, 
+.birome:hover, 
+.anteojos:hover, 
+.cafe:hover {
+  transform: scale(1.6);
+}
+.capi:active, 
+.auri:active, 
+.birome:active, 
+.anteojos:active, 
+.cafe:active {
+  transform: scale(0.95);
 }
 
 
