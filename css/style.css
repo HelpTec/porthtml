@@ -164,12 +164,14 @@ nav ul.menu li {
   color: white;
   max-width: 600px;
   max-height: 400px;
-  border-radius: 2rem;
+  align-items: center;
+  justify-content: center;
+  /*border-radius: 2rem;
   box-shadow: 
   -.5rem .8rem .8rem .3rem rgba(0, 0, 0, 0.453), 
   -0.2rem 0.1rem .8rem .2rem rgba(255, 255, 255, 0.064),
   inset 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.25),
-  inset -0.5rem -0.5rem 0.3rem rgba(255, 255, 255, 0.25);
+  inset -0.5rem -0.5rem 0.3rem rgba(255, 255, 255, 0.25);*/
   grid-area: leftpanel;
   display: grid;
   grid-template-columns: 1fr;
@@ -181,7 +183,6 @@ nav ul.menu li {
 }
 .start{
   grid-area: start;
-  text-align: start;
   font-family: "Poppins", sans-serif;
   font-weight: 100;
   font-style: normal;
@@ -190,10 +191,39 @@ nav ul.menu li {
 }
 .center{
   grid-area: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+a.tourbutton {
+            display: flex;
+            height: 50px;
+            width: 120px;
+            background-color: white;
+            border: 3px solid #555;
+            border-radius: 12px;
+            color: black !important;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+        }
+.tourbutton:link, .tourbutton:visited, .tourbutton:hover, .tourbutton:active{
+  text-decoration: none;
+  color: inherit;
 }
 .end{
   grid-area: end;
 }
+
+/*panel derecho*/
 .rightpanel{
   grid-area: rightpanel;
   display: grid;
@@ -202,7 +232,7 @@ nav ul.menu li {
   height: 89vh;
 }
 .capi{
-  grid-column: 3 / 8;
+  grid-column: 4 / 9;
   grid-row: 3 / 8;
 }
 .auri{
@@ -214,42 +244,72 @@ nav ul.menu li {
   grid-row: 2 / span 1;
 }
 .cafe{
-  grid-column: 2 / span 1;
+  grid-column: 3 / span 1;
   grid-row: 6 / span 1;
 }
 .anteojos{
   grid-column: 7 / span 1;
   grid-row: 3 / span 1;
 }
-.capi img, .auri img, .birome img, .anteojos img, .cafe img{
+.auri img, .birome img, .anteojos img, .cafe img{
   max-width: 100%;
   max-height: 100%;
+}
+.capi img {
+  max-width: 80%;
+  max-height: 80%;
+  margin-left: -10%;
 }
 
 .auri, .birome, .anteojos, .cafe {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* animación suave */
-  cursor: pointer; /* indica que es clickeable */
+  cursor: pointer;
 }
 
-.auri:hover, 
-.birome:hover, 
-.anteojos:hover, 
-.cafe:hover {
-  transform: scale(1.6);
-}
-.capi:active, 
-.auri:active, 
-.birome:active, 
-.anteojos:active, 
-.cafe:active {
-  transform: scale(0.95);
+.capi, .auri, .birome, .anteojos, .cafe {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+.capi.visible, .auri.visible, .birome.visible, .anteojos.visible, .cafe.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-/*template bio*/
+/*delays de aparicion*/
+.capi { 
+  transition-delay: 0s; 
+}
+.auri { 
+  transition-delay: 0.5s; 
+}
+.birome { 
+  transition-delay: 0.7s; 
+}
+.anteojos { 
+  transition-delay: 0.9s; 
+}
+.cafe { 
+  transition-delay: 0.3s; 
+}
+
+/*clase agregada para no interferir con animación de carga*/
+.auri.interactive, .birome.interactive, .anteojos.interactive, .cafe.interactive {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.auri.interactive:hover, .birome.interactive:hover, .anteojos.interactive:hover, .cafe.interactive:hover {
+    transform: scale(1.6);
+}
+.capi.interactive:active, 
+.auri.interactive:active, 
+.birome.interactive:active, .anteojos.interactive:active, .cafe.interactive:active {
+    transform: scale(0.95);
+}
+
+/*---------------TEMPLATE BIO---------------*/
 .biobodygrid{
     min-height: 100vh;
     width: 100vw;

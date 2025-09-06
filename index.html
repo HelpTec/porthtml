@@ -32,7 +32,11 @@
     <div class="bodygrid">
         <div class="leftpanel">
             <div class="start"><br><p>Creando un mundo mejor</p><p>Una linea de codigo a la vez</p></div>
-            <div class="center"><p></p></div>
+            <div class="center">
+                <a href="" class="tourbutton" role="button" aria-label="Iniciar tour">
+                    Tour!
+                </a>
+            </div>
             <div class="end"></div>
         </div>
         <div class="rightpanel">
@@ -52,7 +56,6 @@
                 <img src="/img/cafe.png" alt="cafe">
             </div>
         </div>
-        </div>
     </div>
     <script>
     const hamburger = document.querySelector(".hamburger");
@@ -61,6 +64,17 @@
     hamburger.addEventListener("click", () => {
         nav.classList.toggle("open");
     })
+    document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll(".capi, .auri, .birome, .anteojos, .cafe");
+        const delays = [0, 500, 700, 900, 300];
+
+        elements.forEach((element, index) => {
+            element.classList.add("visible");
+            setTimeout(() => {
+                element.classList.add("interactive");
+            }, delays[index] + 600); 
+        });
+    });
     </script>
 </body>
 </html>
