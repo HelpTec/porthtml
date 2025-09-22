@@ -90,11 +90,14 @@ nav ul.menu li a, nav p {
     font-weight: 400;
     font-style: normal;
 }
-nav ul.menu li a {
+nav ul.menu li a{
   font-size: 0.8rem;
 }
 nav p{
   padding-left: 3rem;
+}
+.navbio, .navproyect, .navcontact{
+   display: none;
 }
 .hamburger {
     display: none;
@@ -105,15 +108,17 @@ nav p{
     cursor: pointer;
     margin-left: 2vw;
 }
-@media (min-width: 769px) {
-  nav ul.menu li {
-    display: inline;
-  }
-}
+
 /*responsive del navbar y el hamburguer*/
 @media(max-width: 768px){
 .hamburger {
     display: block;
+}
+.navbio, .navproyect, .navcontact{
+   display: block;
+}
+.navtour{
+   display: none;
 }
 nav {
     flex-direction: column;
@@ -143,7 +148,7 @@ nav ul.menu li {
 
 }
 
-/*bodygrid*/
+/*---------bodygrid------------*/
 .bodygrid{
     height: 89vh;
     width: 100vw;
@@ -214,10 +219,17 @@ a.tourbutton {
             text-decoration: none;
             cursor: pointer;
             position: relative;
+            transition: transform 0.6s ease-out;
         }
 .tourbutton:link, .tourbutton:visited, .tourbutton:hover, .tourbutton:active{
   text-decoration: none;
   color: inherit;
+}
+.tourbutton:hover{
+  transform: scale(1.2);
+}
+.tourbutton:active{
+  transform: scale(0.95);
 }
 .end{
   grid-area: end;
@@ -232,49 +244,51 @@ a.tourbutton {
   height: 89vh;
 }
 .capi{
-  grid-column: 4 / 9;
+  grid-column: 5 / 9;
   grid-row: 3 / 8;
 }
 .auri{
-  grid-column: 2 / span 2;
-  grid-row: 3 / span 2;
+  grid-column: 2 / span 3;
+  grid-row: 3 / span 3;
 }
 .birome{
-  grid-column: 5 / span 1;
-  grid-row: 2 / span 1;
+  grid-column: 4 / span 2;
+  grid-row: 2 / span 2;
 }
 .cafe{
-  grid-column: 3 / span 1;
-  grid-row: 6 / span 1;
-}
-.anteojos{
-  grid-column: 7 / span 1;
-  grid-row: 3 / span 1;
-}
-.auri img, .birome img, .anteojos img, .cafe img{
-  max-width: 100%;
-  max-height: 100%;
-}
-.capi img {
-  max-width: 80%;
-  max-height: 80%;
-  margin-left: -10%;
+  grid-column: 3 / span 3;
+  grid-row: 5 / span 3;
 }
 
-.auri, .birome, .anteojos, .cafe {
+.auri img, .cafe img{
+  max-width: 70%;
+  max-height: 70%;
+}
+.birome img{
+  max-width: 100%;
+  max-height: 100%;
+  scale: 1.05;
+}
+.capi img {
+  max-width: 90%;
+  max-height: 90%;
+
+}
+
+.auri, .birome, .cafe {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
-.capi, .auri, .birome, .anteojos, .cafe {
+.capi, .auri, .birome, .cafe {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.capi.visible, .auri.visible, .birome.visible, .anteojos.visible, .cafe.visible {
+.capi.visible, .auri.visible, .birome.visible, .cafe.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -289,25 +303,60 @@ a.tourbutton {
 .birome { 
   transition-delay: 0.7s; 
 }
-.anteojos { 
-  transition-delay: 0.9s; 
-}
+
 .cafe { 
   transition-delay: 0.3s; 
 }
 
 /*clase agregada para no interferir con animación de carga*/
-.auri.interactive, .birome.interactive, .anteojos.interactive, .cafe.interactive {
+.auri.interactive, .birome.interactive, .cafe.interactive {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.auri.interactive:hover, .birome.interactive:hover, .anteojos.interactive:hover, .cafe.interactive:hover {
+.auri.interactive:hover, .birome.interactive:hover, .cafe.interactive:hover {
     transform: scale(1.6);
 }
 .capi.interactive:active, 
 .auri.interactive:active, 
-.birome.interactive:active, .anteojos.interactive:active, .cafe.interactive:active {
+.birome.interactive:active, .cafe.interactive:active {
     transform: scale(0.95);
 }
+/*---------tourgrid------------*/
+.tour{
+  display: none;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  transition: opacity 0.3s ease
+}
+.tourgriddiv{
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  grid-template-rows: repeat(16, minmax(0, 1fr));
+  height: 100%;
+  width: 100%;
+}
+.tourgriddiv div {
+  background: rgba(0,0,0,0.7);
+}
+.tourgriddiv .highlight {
+  background: transparent;
+}
+
+/*
+.tourgriddiv div{
+  min-height: 0;
+  min-width: 0;
+  border: #000000 solid;
+  opacity: 0.3;
+}
+.tourgriddiv div:nth-child(odd) {
+  background-color: red;
+}
+.tourgriddiv div:nth-child(even) {
+  background-color: white;
+}
+*/
 
 /*---------------TEMPLATE BIO---------------*/
 .biobodygrid{

@@ -10,15 +10,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="tour">
+        <div class="tourgriddiv">
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+    </div>
     <div class="navgrid">
         <nav>
             <span class="hamburger"><img src="img/fococonflor.png" class="logohamburguer" alt="logo"></span>
             <p>Diego N. Amézaga</p>
             <ul class="menu">
                 <li><a href="/index.html">home</a></li>
-                <li><a href="/bio.html">bio</a></li>
-                <li><a href="/proyects.html">proyects</a></li>
-                <li><a href="/contact.html">contact</a></li>
+                <li class="navtour"><a href="">tour</a></li>
+                <li class="navbio"><a href="/bio.html">bio</a></li>
+                <li class="navproyect"><a href="/proyects.html">proyects</a></li>
+                <li class="navcontact"><a href="/contact.html">contact</a></li>
             </ul>
             <ul class="nets">
                 <li>
@@ -41,19 +67,19 @@
         </div>
         <div class="rightpanel">
             <div class="capi">
-                <img src="img/capirealista.png" alt="capi">
+                <img src="img/capisticker.png" alt="capi">
             </div>
+            <!--auri debe escalar 1.25 y cubre columnas 9-10 y filas 6-10 -->
             <div class="auri">
-                <img src="/img/auris.png" alt="auri">
+                <img src="/img/brujulasticker.png" alt="auri">
             </div>
+            <!--birome debe escalar 1.25 cubre columnas 13-14 y filas 4-5 -->
             <div class="birome">
-                <img src="/img/birome.png" alt="birome">
+                <img src="/img/biromenotesticker.png" alt="birome">
             </div>
-            <div class="anteojos">
-                <img src="/img/anteojos.png" alt="anteojos">
-            </div>
+            <!--cafe debe escalar 1.25 cubre columnas 11-13 y filas 10-11 -->
             <div class="cafe">
-                <img src="/img/cafe.png" alt="cafe">
+                <img src="/img/cafev3stick.png" alt="cafe">
             </div>
         </div>
     </div>
@@ -65,8 +91,8 @@
         nav.classList.toggle("open");
     })
     document.addEventListener("DOMContentLoaded", function() {
-        const elements = document.querySelectorAll(".capi, .auri, .birome, .anteojos, .cafe");
-        const delays = [0, 500, 700, 900, 300];
+        const elements = document.querySelectorAll(".capi, .auri, .birome, .cafe");
+        const delays = [0, 500, 700, 300];
 
         elements.forEach((element, index) => {
             element.classList.add("visible");
