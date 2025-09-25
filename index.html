@@ -11,29 +11,6 @@
 </head>
 <body>
     <div class="tour">
-        <div class="tourgriddiv">
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-        </div>
     </div>
     <div class="navgrid">
         <nav>
@@ -41,7 +18,6 @@
             <p>Diego N. Amézaga</p>
             <ul class="menu">
                 <li><a href="/index.html">home</a></li>
-                <li class="navtour"><a href="">tour</a></li>
                 <li class="navbio"><a href="/bio.html">bio</a></li>
                 <li class="navproyect"><a href="/proyects.html">proyects</a></li>
                 <li class="navcontact"><a href="/contact.html">contact</a></li>
@@ -57,7 +33,13 @@
     </div>
     <div class="bodygrid">
         <div class="leftpanel">
-            <div class="start"><br><p>Creando un mundo mejor</p><p>Una linea de codigo a la vez</p></div>
+            <div class="start"><br><strong>
+                <p>¡Hola, soy Diego!</p>
+                <p>Desarrollador Full Stack</p>
+                <p> Desde Argentina</p>
+                <p>!Para el mundo entero!</p>
+                </strong>
+            </div>
             <div class="center">
                 <a href="" class="tourbutton" role="button" aria-label="Iniciar tour">
                     Tour!
@@ -69,17 +51,20 @@
             <div class="capi">
                 <img src="img/capisticker.png" alt="capi">
             </div>
-            <!--auri debe escalar 1.25 y cubre columnas 9-10 y filas 6-10 -->
             <div class="auri">
-                <img src="/img/brujulasticker.png" alt="auri">
+                <a href="/bio.html"><img src="/img/biosticker.png" alt="auri"></a>
             </div>
-            <!--birome debe escalar 1.25 cubre columnas 13-14 y filas 4-5 -->
             <div class="birome">
-                <img src="/img/biromenotesticker.png" alt="birome">
+                <a href="/contact.html"><img src="/img/biromenotesticker.png" alt="birome"></a>
             </div>
-            <!--cafe debe escalar 1.25 cubre columnas 11-13 y filas 10-11 -->
             <div class="cafe">
-                <img src="/img/cafev3stick.png" alt="cafe">
+                <a href="/proyects.html"><img src="/img/cafev3stick.png" alt="cafe"></a>
+            </div>
+            <div class="dialogrid">
+                <div class="globodialogo">
+                    <img src="/img/globobasico.png" alt="cafe">
+                    <p class="dialogo"></p>
+                </div>
             </div>
         </div>
     </div>
@@ -101,6 +86,61 @@
             }, delays[index] + 600); 
         });
     });
+
+const tourButton = document.querySelector(".tourbutton");
+const tourOverlay = document.querySelector(".tour");
+const globodialogo = document.querySelector(".globodialogo");
+const elementos = {
+  auri: document.querySelector(".auri"),
+  birome: document.querySelector(".birome"),
+  cafe: document.querySelector(".cafe"),
+  capi: document.querySelector(".capi")
+}
+tourButton.addEventListener("click", () => {
+    event.preventDefault(); 
+    tourOverlay.style.display = "block";
+    setTimeout(() => {
+  tourOverlay.style.opacity = "1";
+    }, 10);
+    elementos.capi.style.zIndex = "901";
+    globodialogo.classList.add("visible");
+  setTimeout(() => {
+    elementos.auri.style.zIndex = "901";
+    elementos.auri.style.transform = "scale(1.35)";
+    globodialogo.querySelector(".dialogo").textContent = "Acá vas a ver mi biografia, estudios y mas detalles";
+  }, 800);
+  setTimeout(() => {
+    elementos.auri.style.zIndex = "";
+    elementos.auri.style.transform = "";
+  }, 3500);
+  setTimeout(() => {
+    elementos.cafe.style.zIndex = "901";
+    elementos.cafe.style.transform = "scale(1.35)";
+    globodialogo.querySelector(".dialogo").textContent = "Acá estan mis proyectos, ¡todos ellos!";
+  }, 4000);
+  setTimeout(() => {
+    elementos.cafe.style.zIndex = "";
+    elementos.cafe.style.transform = "";
+  }, 7000);
+  setTimeout(() => {
+    elementos.birome.style.zIndex = "901";
+    elementos.birome.style.transform = "scale(1.35)";
+        globodialogo.querySelector(".dialogo").textContent = 
+        "Acá vas a poder contactarme con formulario, ¡trabajemos juntos!";
+  }, 7500);
+  setTimeout(() => {
+    elementos.birome.style.zIndex = "";
+    elementos.birome.style.transform = "";
+  }, 10500);
+  setTimeout(() => {
+    tourOverlay.style.opacity = "0";
+    setTimeout(() => {
+    tourOverlay.style.display = "none";
+    }, 1000);    
+    globodialogo.classList.remove("visible");
+    globodialogo.querySelector(".dialogo").textContent = ""
+  }, 11000);
+});
     </script>
 </body>
 </html>
