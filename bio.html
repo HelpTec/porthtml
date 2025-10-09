@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="navgrid">
@@ -36,11 +37,18 @@
                 <div class="fotoperf" style="background-image: url('img/perf.jpg');"></div>
             </div>
             <div class="biocard" id="bioinforight1">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Illo totam placeat molestias minus aspernatur. 
-                    Ducimus hic sapiente rem! Dolor totam laborum ipsum. 
-                    Delectus temporibus impedit voluptate sunt minus dignissimos consequuntur.
+                <h1 class="aboutme">¿Quien soy?</h1>
+                <p class="biotext"><b>Soy Diego</b>, un desarrollador apasionado por la tecnologia.<br>
+                   Me especializo en lógica funcional y dar soluciones donde los demas ven retos.<br>
+                   Mi objetivo es mejorar los lugares donde trabajo con innovación, investigación y compromiso.<br>
+                   Busco entornos donde se valoren las ideas, colaboracion y el crecimiento.
                 </p>
+                <div class="iconos">
+                    <img src="/img/biosticker.png" class="iconosbio" alt="estudios">
+                    <a href="#bioinforight2" class="linksico"><h2 class="icontit">Estudios</h2></a>
+                    <img src="/img/aurissticker.png" class="iconosbio" alt="estudios">
+                    <a href="#bioinfoleft3" class="linksico"><h2 class="icontit">Hobbies</h2></a>
+                </div>
             </div>
             <div class="biocard" id="bioinfoleft2">
                 <div class="text-carousel">
@@ -78,13 +86,45 @@
     hamburger.addEventListener("click", () => {
         nav.classList.toggle("open");
     });
-    document.addEventListener("DOMContentLoaded", function () {
-        const cards = document.querySelectorAll(".biocard");
-        cards.forEach((card, index) => {
-            setTimeout(() => {
-            card.classList.add("show");
-            }, index * 200); // 200ms de delay entre cada card
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+    {
+        threshold: 0.2,
+    }
+    );
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault(); // bloquea el salto automático
+
+    const targetId = this.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if(targetElement){
+      // Calculamos la posición a donde queremos hacer scroll
+      const yOffset = -150; // ajuste para centrar un poco más o margen
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth' // scroll animado
+      });
+    }
+  });
+});
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            }, 50);
         });
+    document.querySelectorAll(".biocard").forEach((card) => observer.observe(card));
+    document.addEventListener("DOMContentLoaded", function () {
         const carousels = {
             2: {
             textSlides: document.querySelectorAll('#bioinfoleft2 .text-slide'),
