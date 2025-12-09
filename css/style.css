@@ -305,16 +305,12 @@ nav ul.menu li {
 
 }
 
-/*---------tour------------*/
-.tour{
-  display: none;
-  opacity: 0;
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: 900;
-  background: rgba(0,0,0,0.7);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+/*---------------TECH GRID -----------------*/
+.mytechsgrid{
+min-height: 40vh;
+width: 100vw;
+display: grid;
+background-color: black;
 }
 
 /*---------------TEMPLATE BIO---------------*/
