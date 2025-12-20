@@ -48,10 +48,11 @@
                 <img src="img/capiIT.png" alt="capi">
             </div>
         </div>
-    </div>
-    <div class="mytechsgrid">
+        <div class="mytechsgrid">
         <h3 class="tit fredoka">TECNOLOGIAS QUE MANEJO</h3>
+        </div>
     </div>
+
     <div class="anchor" id="anchor"></div>
     <div class="biobodygrid" id="bio">
             <div class="biocard" id="bioinfoleft1">
@@ -63,10 +64,7 @@
                    Me gusta crear lógica funcional y encontrar soluciones donde otros ven obstaculos.<br>
                    Mi objetivo es mejorar los lugares donde trabajo con innovación, investigación y compromiso.
                 </p>
-                <div class="iconos">
-                    <a href="#bioinforight2" class="linksico"><img src="/img/estudios.png" class="iconosbio" alt="estudios"></a>
-                    <a href="#bioinfoleft3" class="linksico"><img src="/img/conocimientos.png" class="iconosbio" alt="estudios"></a>
-                </div>
+
             </div>
             <div class="biocard" id="bioinfoleft2">
                 <div class="iconos">
@@ -150,7 +148,6 @@
     const targetElement = document.getElementById(targetId);
 
     if(targetElement){
-      // Calculamos la posición a donde queremos hacer scroll
       const yOffset = -150; // ajuste para centrar un poco más o margen
       const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
