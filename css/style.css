@@ -12,7 +12,7 @@ body {
    margin: 0;
    padding: 0; 
    overflow-x: hidden;
-   background-color: blue;
+   background-color: #000614;
  }
 /* ==============================
    NAVBAR
@@ -58,36 +58,57 @@ nav p { padding-left: 3rem; }
 .bodyup {
    width: 92vw;
    height: 52vh;
-   background-color: green;
    display: grid;
    padding: 0 4vw 0 4vw;
    margin-bottom: 0;
-   grid-template-columns: 0.35fr 0.65fr;
+   grid-template-columns: 27.5vw 64vw;
    grid-template-rows: 0.85fr 0.15fr;
    grid-template-areas: "leftpanel rightpanel" "tech tech";
+   margin-bottom: 2vh;
 }
 .leftpanel { 
    grid-area: leftpanel; 
-   background-color: red;
+   max-width: 27vw;
    padding: 10px;
+   max-height: 45vh;
+   padding: 0;
 }
 .contenedortech, .presentacion {
    width: 100%;
    height: 100%;
-   background-color: white;
 }
-.rightpanel { 
-   grid-area: rightpanel; 
-   background-color: yellow; 
-   padding: 10px;
+.rightpanel {
+   grid-area: rightpanel;
+   /* Panel acts as the image frame: remove inner padding so the
+      image can fill fully, clip overflow, and apply rounded corners */
+   padding: 0;
+   position: relative;
+   overflow: hidden;
+   border-radius: 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+/* Image inside rightpanel: fill the container, preserve aspect ratio,
+   and inherit the panel's rounded corners so borders blend seamlessly. */
+.rightpanel .note-img {
+   width: 100%;
+   height: 100%;
+   display: block;
+   object-fit: fit;
+   object-position: center;
+   border: 0;
+   border-radius: inherit;
+   background-color: transparent;
 }
 .tech { 
    grid-area: tech; 
-   background-color: cyan; 
    padding: 5px;
 }
 .presentacion {
    display: grid;
+   max-height: 42vh;
+   max-width: 27vw;
    grid-template-columns: 1fr 1fr;
    grid-template-rows: repeat(8, 1fr);
    grid-template-areas: 
@@ -98,40 +119,100 @@ nav p { padding-left: 3rem; }
    "boton1 boton2"
    "redes redes";
    min-height: 0;
+   color: white;
+}
+.presentacion, .presentacion > div {
+   min-width: 0;
+}
+.presentacion > div {
+   overflow: hidden;
 }
 .saludo {
    grid-area: saludo;
-   background-color: pink;
+   border-radius: 1rem;
+   max-width: 9vw;
+   font-family: "Poppins", sans-serif;
+   font-weight: 700;
+   align-self: center;
+   border: 1px solid gray;
 }
 .nombre {
    grid-area: nombre;
-   background-color: orange;
+   width: 100%;
+   max-width: 100%;
+   border-right: 3px solid #00d8ff;
+   }
+.nombre h1 {
+   margin: 0;
+   font-family: "Oxanium", sans-serif;
+   font-weight: 700;
+   font-style: normal;
+   font-size: clamp(4.3rem, 4vw, 6rem);
+   line-height: 1.1;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   box-sizing: border-box;
+   align-self: center; 
+}
+.dev {
+   color: #00d8ff;
 }
 .titulo {
    grid-area: titulo;
-   background-color: purple;
+   font-family: "Oxanium", sans-serif;
+   font-weight: 500;
+   align-self: center;
+   font-size: 1.6rem;
 }
 .descripcion {
    grid-area: descripcion;
-   background-color: brown;
+   font-family: "Inter", sans-serif;
+   align-self: center;
+   font-size: 1.1rem;
+}
+.boton1,
+.boton2 {
+   border-radius: 1rem;
+   max-width: 13vw;
+   border: 2px solid transparent;
+   cursor: pointer;
+   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+   overflow: hidden;
+}
+.boton1 h5,
+.boton2 h5{
+   text-overflow: ellipsis;
+   text-decoration: none;
+   font-family: "Inter", sans-serif;
+   font-weight: 600;
+   font-size: 1rem;
 }
 .boton1 {
    grid-area: boton1;
-   background-color: gray;
+   background-color: #3b82f6;
+   color: white;
+}
+.boton1:hover {
+   background-color: #2563eb;
 }
 .boton2 {
    grid-area: boton2;
-   background-color: black;
+   background-color: #000d28;
+   color: white;
+   border-color: rgba(255, 255, 255, 0.959);
+}
+.boton2:hover {
+   background-color: #000000;
 }
 .redes {
    grid-area: redes;
-   background-color: white;
    min-height: 0;
    display: flex;
    align-items: center;
    justify-content: center;
-   padding: 0.25rem 0;
 }
+
 .ulredes, .ultechs {
    display: flex;
    gap: 20px;
@@ -139,11 +220,19 @@ nav p { padding-left: 3rem; }
    padding: 0;
    margin: 0;
    width: 100%;
+   font-family: "Oxanium", sans-serif;
+   font-weight: 200;
+   color: white;
+}
+.ultechs {
+   background-color: #000d28;
    align-items: center;
    justify-content: center;
+   border: 0.2px solid white;
+   border-radius: 1rem;
 }
 .ulredes li a img{
-   height: 3.5vh;
+   height: 5vh;
    width: auto;
    object-fit: contain;
    display: block;
@@ -173,28 +262,79 @@ nav p { padding-left: 3rem; }
 }
 .secondhalf {
    width: 92vw;
-   height: 30vh;
-   background-color: red;
+   height: 40vh;
    display: grid;
    padding: 0 4vw 0 4vw;
+   gap: 1vw;
    margin-top: -2vh;
-   grid-template-columns: repeat(5, 1fr);
-   grid-template-rows: auto;
-   grid-template-areas: "aboutme proyects proyects proyects pathing";
+   grid-template-columns: repeat(7, 1fr);
+   grid-template-rows: 0.75fr 0.25fr;
+   grid-template-areas: 
+   "aboutme aboutme proyects proyects proyects pathing pathing" 
+   "footer footer footer footer footer footer footer";
 }
-.aboutme { grid-area: aboutme; background-color: orange; }
-.proyects { grid-area: proyects; background-color: cyan; }
-.pathing { grid-area: pathing; background-color: pink; }
+.aboutme { 
+   max-width: 100%;
+   grid-area: aboutme; 
+   background-color: orange;
+   border: 0.2px solid white;
+   border-radius: 1rem;
+}
+.proyects { 
+   grid-area: proyects; 
+   max-width: 100%;
+   background-color: cyan;
+   border: 0.2px solid white;
+   border-radius: 1rem; 
+   display: grid;
+   padding: 1vh 1vw 1vh 1vw;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: 0.17fr 0.83fr;
+   grid-template-areas: "banner vertodosbtn" "cards cards";
+}
+.banner { grid-area: banner; background-color: red; min-height: 4vh; }
+.vertodosbtn { grid-area: vertodosbtn; background-color: green; min-height: 4vh; }
+.cards { 
+   grid-area: cards;
+   background-color: blue; 
+   max-height: 28vh; 
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 1vw;
+   padding: 0vh 1vw 0vh 1vw;
+}
+
+.tarjetaproyecto {
+   width: 90%;
+   height: 90%;
+   background-color: #bbc1cf;
+   border: 0.2px solid white;
+   border-radius: 1rem;
+   font-size: 0.7rem;
+}
+.pathing { 
+   grid-area: pathing; 
+   max-width: 100%;
+   background-color: pink; 
+   border: 0.2px solid white;
+   border-radius: 1rem;
+}
 
 .footercontainer{
-   width: 92vw;
-   height: 12vh;
-   background-color: black;
+   grid-area: footer;
+   background-color: #012c88;
+   border: 0.2px solid white;
+   border-radius: 1rem; 
    display: grid;
-   padding: 2vh 4vw 2vh 4vw;
+   padding: 1vh 4vw 1vh 4vw;
    grid-template-columns: repeat(5, 1fr);
-   grid-template-rows: 0.75fr 0.35fr;
+   grid-template-rows: 1fr;
    grid-template-areas: "footerleft footerleft footermiddle footerright footerright" "blank blank blank blank blank";
+}
+.footerleft, .footermiddle, .footerright, .blank {
+   align-items:center;
+   justify-content: center;
 }
 .footerleft { grid-area: footerleft; background-color: red; }
 .footermiddle { grid-area: footermiddle; background-color: green; }

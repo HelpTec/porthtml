@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Oxanium:wght@200..800&family=Poppins:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oxanium:wght@200..800&family=Poppins:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="navgrid">
@@ -30,23 +32,23 @@
         <div class="leftpanel">
             <div class="presentacion">
                 <div class="saludo">👋 Hola! Soy</div>
-                <div class="nombre">DIEGO N. AMÉZAGA DEV</div>
-                <div class="titulo">Desarrollador Web Full Stack</div>
-                <div class="descripcion">Creo soluciones digitales modernas,
-                     automatizadas y escalables
-                    <br>con Python impulsadas por IA</div>
-                <div class="boton1">🚀 Ver Proyectos</div>
-                <div class="boton2">✉️ Contactar</div>
+                <div class="nombre"><h1>D.N.A <span class="dev">DEV</span></h1></div>
+                <div class="titulo">Desarrollador <span class="dev">Web Full Stack</span></div>
+                 <div class="descripcion">Creo soluciones digitales modernas,
+                     automatizadas y escalables con Python impulsadas por IA</div>
+                 <button class="boton1" type="button">🚀 Ver Proyectos</button>
+                 <button class="boton2" type="button">✉️ Contactar</button>
                 <div class="redes">
                     <ul class="ulredes">
-                        <li><a href=""><img src="img/inst.jpg" class="logo" alt="instagram"></a></li>
-                        <li><a href=""><img src="img/faceb.jpg" class="logo" alt="facebook"></a></li>
-                        <li><a href=""><img src="img/in.png" class="logo" alt="linkedin"></a></li>
+                        <li><a href=""><img src="img/in.png" class="logo" alt="instagram"></a></li>
+                        <li><a href=""><img src="img/wsp.png" class="logo" alt="facebook"></a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="rightpanel"></div>
+        <div class="rightpanel">
+            <img class="note-img"src="img/48bab4ef-02ef-476f-9e14-806527b5bfa6.png" alt="note">
+        </div>
         <div class="tech">
             <div class="contenedortech">
                     <ul class="ultechs">
@@ -63,20 +65,27 @@
         </div>
     </div>
     <div class="secondhalf">
-        <div class="aboutme"></div>
-        <div class="proyects"></div>
+        <div class="aboutme">
+            <h3>🔍 Sobre Mí</h3>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi perspiciatis eligendi et ad aspernatur est saepe, dignissimos, iure doloremque rem, 
+                vitae quisquam at molestias dolores repudiandae culpa? Repellat, similique. Aperiam.</p>
+        </div>
+        <div class="proyects">
+            <div class="banner"></div>
+            <div class="vertodosbtn"></div>
+            <div class="cards"></div>
+        </div>
         <div class="pathing"></div>
+        <div class="footercontainer">
+            <div class="footerleft">
+            </div>
+            <div class="footermiddle">
+            </div>
+            <div class="footerright">
+            </div>
+            <div class="blank"></div>
+        </div>   
     </div>
-    <div class="footercontainer">
-        <div class="footerleft">
-        </div>
-        <div class="footermiddle">
-        </div>
-        <div class="footerright">
-        </div>
-        <div class="blank"></div>
-    </div>   
-    
     <script>
     const hamburger = document.querySelector(".hamburger");
     const nav = document.querySelector("nav");
@@ -84,6 +93,40 @@
     hamburger.addEventListener("click", () => {
         nav.classList.toggle("open");
     })
+    // script de carrousel
+    const projectcards = [
+        {
+            title: "Proyecto 1",
+            description: "Descripción del proyecto 1",
+            image: "img/proyect1.png",
+            link: "#"
+        },
+        {
+            title: "Proyecto 2",
+            description: "Descripción del proyecto 2",
+            image: "img/proyect2.png",
+            link: "#"
+        },
+        {
+            title: "Proyecto 3",
+            description: "Descripción del proyecto 3",
+            image: "img/proyect3.png",
+            link: "#"
+        }
+    ];
+    const contenedor = document.querySelector(".cards");
+    const tarjetas = projectcards.map(proyecto => {
+        return `
+        <div class="tarjetaproyecto">
+            <img src="${proyecto.image}" alt="${proyecto.title}">
+            <h3>${proyecto.title}</h3>
+            <p>${proyecto.description}</p>
+            <a href="${proyecto.link}">Ver Proyecto</a>
+        </div>
+        `;
+    }).join("");
+    contenedor.innerHTML = tarjetas;
+
 
     </script>
 </body>
