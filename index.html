@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="rightpanel">
-            <img class="note-img"src="img/48bab4ef-02ef-476f-9e14-806527b5bfa6.png" alt="note">
+            <img class="note-img"src="img/notebook.png" alt="note">
         </div>
         <div class="tech">
             <div class="contenedortech">
@@ -73,9 +73,45 @@
         <div class="proyects">
             <div class="banner"></div>
             <div class="vertodosbtn"></div>
-            <div class="cards"></div>
+            <div class="cardscontainer">
+                <button id="anterior" class="carousel-btn" type="button">◀</button>
+                <div class="cards"></div>
+                <button id="siguiente" class="carousel-btn" type="button">▶</button>
+            </div>
         </div>
-        <div class="pathing"></div>
+        <div class="pathing">
+            <div class="timeline">
+                <div class="linea"></div>
+                <div class="evento">
+                    <div class="punto"></div>
+                    <div class="contenido">
+                        <h3>Evento 1</h3>
+                        <p>descripcion del evento 1</p>
+                    </div>
+                </div>
+                <div class="evento">
+                    <div class="punto"></div>
+                    <div class="contenido">
+                        <h3>Evento 2</h3>
+                        <p>descripcion del evento 2</p>
+                    </div>
+                </div>
+                <div class="evento">
+                    <div class="punto"></div>
+                    <div class="contenido">
+                        <h3>Evento 3</h3>
+                        <p>descripcion del evento 3</p>
+                    </div>
+                </div>
+                <div class="evento">
+                    <div class="punto"></div>
+                    <div class="contenido">
+                        <h3>Evento 4</h3>
+                        <p>descripcion del evento 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="footercontainer">
             <div class="footerleft">
             </div>
@@ -93,7 +129,7 @@
     hamburger.addEventListener("click", () => {
         nav.classList.toggle("open");
     })
-    // script de carrousel
+    // script de generador de tarjetas de proyectos
     const projectcards = [
         {
             title: "Proyecto 1",
@@ -112,6 +148,24 @@
             description: "Descripción del proyecto 3",
             image: "img/proyect3.png",
             link: "#"
+        },
+        {
+            title: "Proyecto 4",
+            description: "Descripción del proyecto 4",
+            image: "img/proyect4.png",
+            link: "#"
+        },
+        {
+            title: "Proyecto 5",
+            description: "Descripción del proyecto 5",
+            image: "img/proyect5.png",
+            link: "#"
+        },
+        {
+            title: "Proyecto 6",
+            description: "Descripción del proyecto 6",
+            image: "img/proyect6.png",
+            link: "#"
         }
     ];
     const contenedor = document.querySelector(".cards");
@@ -126,6 +180,113 @@
         `;
     }).join("");
     contenedor.innerHTML = tarjetas;
+
+    // script de carrousel de proyectos
+    setTimeout(() => {
+  console.log("Espere 1 segundos");
+}, 1000);
+
+const container = document.querySelector('.cards');
+const imagenes = document.querySelectorAll('.tarjetaproyecto');
+const btnAnterior = document.getElementById('anterior');
+const btnSiguiente = document.getElementById('siguiente');
+const cardsWrapper = document.querySelector('.cardscontainer');
+let index = 0;
+let startX = 0;
+const visibles = 3;
+// deslizamiento horizontal
+const anchoTarjeta = imagenes.length > 0 ? imagenes[0].getBoundingClientRect().width : 0;
+const gap = parseFloat(getComputedStyle(container).gap) || 0;
+let currentTranslate = 0;
+let previousTranslate = 0;
+let isDragging = false;
+const minDragDistance = 40;
+
+function getTranslateForIndex(i) {
+    return -(i * (anchoTarjeta + gap));
+}
+
+function actualizarCarrusel() {
+    currentTranslate = getTranslateForIndex(index);
+    container.style.setProperty('--current-translate', `${currentTranslate}px`);
+    container.style.transition = 'transform .4s ease';
+    container.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+function setCarouselPosition(position) {
+    container.style.setProperty('--current-translate', `${position}px`);
+    container.style.transform = `translateX(${position}px)`;
+}
+
+function triggerBounce() {
+    container.style.setProperty('--current-translate', `${currentTranslate}px`);
+    container.classList.remove('bounce');
+    void container.offsetWidth;
+    container.classList.add('bounce');
+    container.addEventListener('animationend', () => {
+        container.classList.remove('bounce');
+    }, { once: true });
+}
+
+btnSiguiente.addEventListener('click', () => {
+    if (index < imagenes.length - visibles) {
+        index++;
+        actualizarCarrusel();
+    } else {
+        triggerBounce();
+    }
+});
+
+btnAnterior.addEventListener('click', () => {
+    if (index > 0) {
+        index--;
+        actualizarCarrusel();
+    } else {
+        triggerBounce();
+    }
+});
+
+function dragStart(event) {
+    if (event.target.closest('.carousel-btn')) return;
+    isDragging = true;
+    startX = event.clientX;
+    previousTranslate = currentTranslate;
+    container.style.transition = 'none';
+    cardsWrapper.setPointerCapture(event.pointerId);
+}
+
+function dragMove(event) {
+    if (!isDragging) return;
+    const delta = event.clientX - startX;
+    currentTranslate = previousTranslate + delta;
+    setCarouselPosition(currentTranslate);
+}
+
+function dragEnd(event) {
+    if (!isDragging) return;
+    isDragging = false;
+    const delta = event.clientX - startX;
+    if (delta > minDragDistance && index > 0) {
+        index--;
+    } else if (delta < -minDragDistance && index < imagenes.length - visibles) {
+        index++;
+    }
+    actualizarCarrusel();
+}
+
+cardsWrapper.addEventListener('pointerdown', dragStart);
+cardsWrapper.addEventListener('pointermove', dragMove);
+cardsWrapper.addEventListener('pointerup', dragEnd);
+cardsWrapper.addEventListener('pointerleave', dragEnd);
+cardsWrapper.addEventListener('pointercancel', dragEnd);
+
+actualizarCarrusel();
+
+// Opcional: Desplazamiento automático cada 4 segundos
+//setInterval(() => {
+  //  index = (index + 1) % imagenes.length;
+  //  actualizarCarrusel();
+//}, 4000);
 
 
     </script>
