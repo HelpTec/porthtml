@@ -25,7 +25,22 @@
                 <li class="navproyect"><a href="/proyects.html">proyects</a></li>
                 <li class="navcontact"><a href="/contact.html">contact</a></li>
             </ul>
-            <button class="nav-placeholder" type="button">Placeholder</button>
+            <button class="theme-toggle" type="button" aria-label="Interruptor de modo claro/oscuro">
+                <!-- track es la pista del switch donde se sitúan los iconos de sol y luna -->
+                <span class="theme-toggle__track">
+                    <!-- icono blanco de sol en el extremo izquierdo -->
+                    <span class="theme-icon theme-icon--sun" aria-hidden="true"></span>
+                    <!-- icono luna en el extremo derecho -->
+                    <span class="theme-icon theme-icon--moon" aria-hidden="true"></span>
+                </span>
+                <!-- bola móvil del switch, que se mueve de un lado a otro -->
+                <span class="theme-toggle__ball">
+                    <!-- icono visible dentro de la bola en modo claro -->
+                    <span class="theme-ball-icon theme-ball-icon--sun" aria-hidden="true">☀</span>
+                    <!-- icono visible dentro de la bola en modo oscuro -->
+                    <span class="theme-ball-icon theme-ball-icon--moon" aria-hidden="true">🌙</span>
+                </span>
+            </button>
         </nav>
     </div>
     <div class="bodyup">
@@ -114,10 +129,22 @@
         </div>
         <div class="footercontainer">
             <div class="footerleft">
+                <img src="/img/rocket.png" alt="" class="rocket">
+                <div class="carteles">
+                    <h2 class="cartel">¿Tenes una idea o proyecto?</h2>
+                    <h3 class="sub">¡Hagamosla realidad juntos!</h3>
+                </div>
             </div>
             <div class="footermiddle">
+                <a href="" class="contactame">
+                    Contactame
+                    <img src="img/paperplane.png" alt="" class="paperplane">
+                </a>
             </div>
             <div class="footerright">
+                <div class="footerrightleft"><h5>📍Ubicacion</h5><p>Ciudad, País</p></div>
+                <div class="footerrightmid"><h5>⏱️Disponibilidad</h5><p>Remoto-FullTime</p></div>
+                <div class="footerrightright"><h5>✉️Email</h5><p>mimail@algo.com</p></div>
             </div>
             <div class="blank"></div>
         </div>   
@@ -134,54 +161,51 @@
         {
             title: "Proyecto 1",
             description: "Descripción del proyecto 1",
-            image: "img/proyect1.png",
+            image: "img/globobasico.png",
             link: "#"
         },
         {
             title: "Proyecto 2",
             description: "Descripción del proyecto 2",
-            image: "img/proyect2.png",
+            image: "img/globobasico.png",
             link: "#"
         },
         {
             title: "Proyecto 3",
             description: "Descripción del proyecto 3",
-            image: "img/proyect3.png",
+            image: "img/globobasico.png",
             link: "#"
         },
         {
             title: "Proyecto 4",
             description: "Descripción del proyecto 4",
-            image: "img/proyect4.png",
+            image: "img/globobasico.png",
             link: "#"
         },
         {
             title: "Proyecto 5",
             description: "Descripción del proyecto 5",
-            image: "img/proyect5.png",
+            image: "img/globobasico.png",
             link: "#"
         },
         {
             title: "Proyecto 6",
             description: "Descripción del proyecto 6",
-            image: "img/proyect6.png",
+            image: "img/globobasico.png",
             link: "#"
         }
     ];
     const contenedor = document.querySelector(".cards");
     const tarjetas = projectcards.map(proyecto => {
         return `
-        <div class="tarjetaproyecto">
+        <a href="${proyecto.link}" class="tarjetaproyecto" draggable="false">
             <img src="${proyecto.image}" alt="${proyecto.title}">
-            <h3>${proyecto.title}</h3>
+            <h2>${proyecto.title}</h2>
             <p>${proyecto.description}</p>
-            <a href="${proyecto.link}">Ver Proyecto</a>
-        </div>
+        </a>
         `;
     }).join("");
     contenedor.innerHTML = tarjetas;
-
-    // script de carrousel de proyectos
     setTimeout(() => {
   console.log("Espere 1 segundos");
 }, 1000);
@@ -200,6 +224,7 @@ const gap = parseFloat(getComputedStyle(container).gap) || 0;
 let currentTranslate = 0;
 let previousTranslate = 0;
 let isDragging = false;
+let didDrag = false;
 const minDragDistance = 40;
 
 function getTranslateForIndex(i) {
@@ -248,7 +273,11 @@ btnAnterior.addEventListener('click', () => {
 
 function dragStart(event) {
     if (event.target.closest('.carousel-btn')) return;
+    if (event.target.closest('.tarjetaproyecto')) {
+        event.preventDefault();
+    }
     isDragging = true;
+    didDrag = false;
     startX = event.clientX;
     previousTranslate = currentTranslate;
     container.style.transition = 'none';
@@ -258,6 +287,7 @@ function dragStart(event) {
 function dragMove(event) {
     if (!isDragging) return;
     const delta = event.clientX - startX;
+    if (Math.abs(delta) > 5) didDrag = true;
     currentTranslate = previousTranslate + delta;
     setCarouselPosition(currentTranslate);
 }
@@ -280,6 +310,13 @@ cardsWrapper.addEventListener('pointerup', dragEnd);
 cardsWrapper.addEventListener('pointerleave', dragEnd);
 cardsWrapper.addEventListener('pointercancel', dragEnd);
 
+cardsWrapper.addEventListener('click', (event) => {
+    if (didDrag && event.target.closest('.tarjetaproyecto')) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+});
+
 actualizarCarrusel();
 
 // Opcional: Desplazamiento automático cada 4 segundos
@@ -288,6 +325,14 @@ actualizarCarrusel();
   //  actualizarCarrusel();
 //}, 4000);
 
+// botón que controla solo la apariencia interna del switch
+const themeToggleButton = document.querySelector('.theme-toggle');
+if (themeToggleButton) {
+    themeToggleButton.addEventListener('click', () => {
+        // alterna la clase visual .dark sin cambiar tema global
+        themeToggleButton.classList.toggle('dark');
+    });
+}
 
     </script>
 </body>
