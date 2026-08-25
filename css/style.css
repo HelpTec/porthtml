@@ -13,7 +13,12 @@ body {
    padding: 0; 
    overflow-x: hidden;
    background: #8200ba;
-background: linear-gradient(180deg,rgb(0, 0, 0) 0%, rgba(0, 21, 92, 1) 50%, rgb(84, 0, 120)100%);
+background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    rgba(0, 21, 92, 1) 70%,
+    #000d28 80%
+);
  }
 /* ==============================
    NAVBAR
@@ -197,8 +202,6 @@ nav p { padding-left: 3rem; }
 }
 .rightpanel {
    grid-area: rightpanel;
-   /* Panel acts as the image frame: remove inner padding so the
-      image can fill fully, clip overflow, and apply rounded corners */
    padding: 0;
    position: relative;
    overflow: hidden;
@@ -207,8 +210,6 @@ nav p { padding-left: 3rem; }
    align-items: center;
    justify-content: center;
 }
-/* Image inside rightpanel: fill the container, preserve aspect ratio,
-   and inherit the panel's rounded corners so borders blend seamlessly. */
 .rightpanel .note-img {
    width: 200%;
    height: 180%;
@@ -258,8 +259,8 @@ nav p { padding-left: 3rem; }
    max-width: 100%;
    height: 100%;
    border-right: 3px solid #00d8ff;
-   margin-top: 2vh;
-   transform: scaleY(1.5);
+   margin-top: 1vh;
+   transform: scaleY(1.4);
    }
 .nombre h1 {
    margin: 0;
@@ -284,13 +285,14 @@ nav p { padding-left: 3rem; }
    font-weight: 500;
    align-self: center;
    font-size: 1.6rem;
-   transform: scaleY(1.5);
+   transform: scaleY(1.4);
 }
 .descripcion {
    grid-area: descripcion;
    font-family: "Inter", sans-serif;
    align-self: center;
    font-size: 0.95rem;
+   margin-bottom: 1vh;
 }
 .boton1,
 .boton2 {
@@ -371,7 +373,7 @@ nav p { padding-left: 3rem; }
    border-right: none;
 }
 .ultechs li a img {
-   height: 3.2rem;
+   height: 3rem;
    width: auto;
    object-fit: contain;
    display: block;
@@ -387,7 +389,7 @@ nav p { padding-left: 3rem; }
    display: grid;
    padding: 0 4vw 0 4vw;
    gap: 1vw;
-   margin-top: -2vh;
+   margin-top: -3vh;
    grid-template-columns: repeat(7, 1fr);
    grid-template-rows: 0.75fr 0.25fr;
    grid-template-areas: 
@@ -395,13 +397,19 @@ nav p { padding-left: 3rem; }
    "footer footer footer footer footer footer footer";
 }
 .aboutme { 
+   background-color: #000d28;
+   padding: 0vh 1.5vw 0vh 1.5vw;
    max-width: 100%;
    grid-area: aboutme;
    color: white;
    border: 0.2px solid white;
    border-radius: 1rem;
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-size: 0.8rem;
 }
 .proyects { 
+   background-color: #000d28;
    grid-area: proyects; 
    max-width: 100%;
    border: 0.2px solid white;
@@ -413,8 +421,8 @@ nav p { padding-left: 3rem; }
    grid-template-areas: "banner vertodosbtn" "cards cards";
    overflow:hidden;
 }
-.banner { grid-area: banner; background-color: red; min-height: 4vh; }
-.vertodosbtn { grid-area: vertodosbtn; background-color: green; min-height: 4vh; }
+.banner { grid-area: banner; min-height: 4vh; }
+.vertodosbtn { grid-area: vertodosbtn; min-height: 4vh; }
 .cardscontainer {
    grid-area: cards;
    position: relative;
@@ -456,11 +464,9 @@ nav p { padding-left: 3rem; }
 #siguiente.carousel-btn {
    right: 0.3rem;
 }
-
 .cards.bounce {
    animation: bounce 0.3s ease;
 }
-
 @keyframes bounce {
    0% { transform: translateX(calc(var(--current-translate) + 0px)); }
    40% { transform: translateX(calc(var(--current-translate) - 8px)); }
@@ -496,41 +502,63 @@ nav p { padding-left: 3rem; }
    border-radius: 1rem;
    overflow-x: hidden;
    overflow-y: auto;
-   padding: 3vh 1vw 1vh 1vw;
+   padding: 0vh 1vw 2vh 1vw;
+   font-family: "Poppins", sans-serif;
+   font-weight: 400;
+   font-size: 1.5rem;
+   background-color: #000d28;
+}
+.pathing h4, .aboutme h4{
+   padding: 0;
+   margin: 0.4rem 0 0.4rem 0;
+   font-size: 1.3rem;
+}
+.banner, .vertodosbtn{
+   margin: 0 0 0 1rem;
+   color: white;
+   font-family: "Poppins", sans-serif;
+   font-weight: 520;
+   font-size: 1.2rem;
+   scale: 1.1;
+   letter-spacing: -0.8px;
+}
+.vertodosbtn {
+   margin: 0;
+   scale: 0.7;
+   text-align: right;
 }
 .timeline {
    position: relative;
-   padding-left: 2rem;
+   padding-left: 0;
+   --eje: 20px;
 }
 .linea {
   position: absolute;
-  left: 0.8rem;
+  left: calc(var(--eje) / 2);
   top: 0;
   bottom: 0;
-  width: 2px;
-  background-color: white;
+  width: 6px;
+  background-color: rgb(115, 75, 210);
+  transform: translateX(-50%);
 }
 
-/* Contenedor de cada evento */
 .evento {
   position: relative;
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  /*align-items: flex-start;*/
+  grid-template-columns: var(--eje) 1fr;
   gap: 0.75rem;
-  line-height: 0.5rem;
-  margin: 0;
 }
 
-/* El punto o círculo en la línea */
 .punto {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   background-color: #007bff;
   border-radius: 50%;
+  justify-self: center;
   z-index: 1;
 }
 
-/* Cuadro de contenido */
 .contenido {
   border-radius: 50px;
   font-size: 0.8rem;
@@ -541,7 +569,11 @@ nav p { padding-left: 3rem; }
 
 .footercontainer{
    grid-area: footer;
-   background-color: #012c88;
+   background: linear-gradient(
+    to right,
+    #012c88,
+    #000d28
+);
    border: 0.2px solid white;
    border-radius: 1rem; 
    display: grid;
