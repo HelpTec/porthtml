@@ -180,7 +180,7 @@ nav p { padding-left: 3rem; }
    ============================== */
 .bodyup {
    width: 92vw;
-   height: 52vh;
+   height: 48vh;
    display: grid;
    padding: 0 4vw 0 4vw;
    margin-bottom: 0;
@@ -193,7 +193,7 @@ nav p { padding-left: 3rem; }
    grid-area: leftpanel; 
    max-width: 27vw;
    padding: 10px;
-   max-height: 45vh;
+   max-height: 38vh;
    padding: 0;
 }
 .contenedortech, .presentacion {
@@ -232,7 +232,8 @@ nav p { padding-left: 3rem; }
    grid-template-rows: auto;
    grid-template-areas: 
    "saludo saludo" 
-   "nombre nombre" "nombre nombre"
+   /* Keep the name to one row; duplicate rows add space before the title. */
+   "nombre nombre"
    "titulo titulo" 
    "descripcion descripcion"
    "boton1 boton2"
@@ -253,14 +254,16 @@ nav p { padding-left: 3rem; }
    font-weight: 700;
    align-self: center;
    border: 1px solid gray;
+   margin-bottom: -1vh;
 }
 .nombre {
    grid-area: nombre;
    max-width: 100%;
    height: 100%;
+
    border-right: 3px solid #00d8ff;
-   margin-top: 1vh;
-   transform: scaleY(1.4);
+   margin-bottom: -4vh;
+   transform: scaleY(1.5);
    }
 .nombre h1 {
    margin: 0;
@@ -276,16 +279,26 @@ nav p { padding-left: 3rem; }
    gap: 0;
 }
 .dev {
-   color: #00d8ff;
+   background: linear-gradient(
+    to right,
+    #5b8af0 0%,
+    #63effc 60%,
+    #ff00c3 100%
+);
+   background-clip: text;
+   color: transparent;
    margin-bottom: 0;
 }
 .titulo {
+   margin: 0;
    grid-area: titulo;
+   border-right: 3px solid #00d8ff;
    font-family: "Oxanium", sans-serif;
    font-weight: 500;
    align-self: center;
    font-size: 1.6rem;
-   transform: scaleY(1.4);
+   transform: scaleY(1.1);
+   margin-bottom: -1.5vh;
 }
 .descripcion {
    grid-area: descripcion;
@@ -293,6 +306,7 @@ nav p { padding-left: 3rem; }
    align-self: center;
    font-size: 0.95rem;
    margin-bottom: 1vh;
+   margin-bottom: -0.5vh;
 }
 .boton1,
 .boton2 {
@@ -373,9 +387,10 @@ nav p { padding-left: 3rem; }
    border-right: none;
 }
 .ultechs li a img {
-   height: 3rem;
-   width: auto;
-   object-fit: contain;
+   height: 2rem;
+   width: 2rem;
+   aspect-ratio: 1 / 1;
+   object-fit: cover;
    display: block;
 }
 .ultechs li a h3 {
@@ -385,7 +400,7 @@ nav p { padding-left: 3rem; }
 }
 .secondhalf {
    width: 92vw;
-   height: 40vh;
+   height: 45vh;
    display: grid;
    padding: 0 4vw 0 4vw;
    gap: 1vw;
@@ -429,12 +444,12 @@ nav p { padding-left: 3rem; }
    overflow: hidden;
    max-height: 28vh;
    height: 100%;
-   padding: 0 2rem;
+   padding: 0.1rem 2rem;
    touch-action: pan-y;
 }
 .cards { 
    display: flex;
-   height: 23vh;
+   height: 23.5vh;
    align-items: center;
    transition: transform .4s ease;
    gap: 1.5vw;
@@ -450,7 +465,7 @@ nav p { padding-left: 3rem; }
    text-wrap: wrap;
 }
 .cards h2{
-   font-size: 1.2rem;
+   font-size: 1rem;
    margin-bottom: 0.5rem;
 }
 .cards p{
@@ -496,7 +511,7 @@ nav p { padding-left: 3rem; }
 
 .tarjetaproyecto {
    width: 90%;
-   height: 20vh;
+   height: 23.5vh;
    flex: 0 0 calc((100% - 3.5vw) / 3);
    background-color: #000f2f;
    border: 0.2px solid white;
@@ -511,7 +526,7 @@ nav p { padding-left: 3rem; }
 }
 .tarjetaproyecto img {
    width: 100%;
-   height: 11vh;
+   height: 14vh;
    object-fit: contain;
    border-radius: inherit;
 }
@@ -610,12 +625,12 @@ nav p { padding-left: 3rem; }
 }
 .footerleft { 
    grid-area: footerleft;
-   max-height: 8vh;
+   max-height: 7vh;
    display: flex;
    align-items: center;
  }
 .rocket {
-   height: 10vh;
+   height: 7vh;
    width: auto;
    object-fit: contain;
    margin-right: 1vw;
@@ -638,13 +653,16 @@ nav p { padding-left: 3rem; }
 }
 .footermiddle { 
    grid-area: footermiddle;
+   max-height: 7vh;
    display: flex;
    align-items: center;
+   justify-content: center;
+      
 }
 .contactame {
    width: 100%;
    max-width: 13vw;
-   height: 3.5rem;
+   height: 7vh;
    background-color: #3b82f6;
    color: white;
    border: none;
@@ -659,14 +677,14 @@ nav p { padding-left: 3rem; }
    text-decoration: none;
 }
 .paperplane {
-   height: 1.5rem;
+   height: 3rem;
    width: auto;
    object-fit: contain;
    margin-left: 0.5rem;
 }
 .footerright { 
    grid-area: footerright;
-   max-height: 8vh;
+   max-height: 7vh;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -674,10 +692,11 @@ nav p { padding-left: 3rem; }
    overflow: hidden;
    border-radius: 1rem;
    border: solid 0.01px white;
+   align-self: start;
 }
 .footerrightleft, .footerrightmid, .footerrightright {
    width: 100%;
-   height: 8vh;
+   height: 7vh;
    color: white;
    border-left: solid 0.01px white;
    font-family: "Inter", sans-serif;
@@ -705,3 +724,75 @@ nav p { padding-left: 3rem; }
 }
 
 .blank { grid-area: blank; background-color: transparent; }
+
+body.lightmode {
+   background-image: url("/img/fondolightmode.png");
+   color: black;
+}
+body.lightmode nav{
+background-color: rgba(255, 255, 255, 0.4);
+color: black;
+}
+body.lightmode nav ul.menu li a, body.lightmode nav p{
+   color: black;
+}
+body.lightmode .dev{
+   background: linear-gradient(
+    to right,
+    #5b8af0 0%,
+    #d4c4b4 45%,
+    #e1ad78 100%
+);
+   background-clip: text;
+   color: transparent;
+   margin-bottom: 0;
+}
+
+body.lightmode .proyects, body.lightmode .pathing, body.lightmode .aboutme, 
+body.lightmode .footercontainer, body.lightmode .ultechs, body.lightmode .ulredes,
+ body.lightmode .tarjetaproyecto, body.lightmode .presentacion,
+ body.lightmode .rightpanel, body.lightmode .boton2, 
+ body.lightmode .proyects .banner, body.lightmode .proyects .vertodosbtn,
+ body.lightmode .footerleft, body.lightmode .footermiddle, body.lightmode .footerright{
+   background-color: rgba(255, 255, 255, 0.4);
+   color: black;
+}
+body.lightmode .footercontainer{
+   background: linear-gradient(
+    to right,
+    #fdf8f2,
+    #fdf8f2
+);
+}
+body.lightmode .footerright, body.lightmode .proyects, body.lightmode .pathing, 
+body.lightmode .aboutme, body.lightmode .ultechs, body.lightmode .boton1, body.lightmode .boton2{
+   border: solid 0.01px black;
+}
+body.lightmode .footerright h5, body.lightmode .footerright p,
+body.lightmode .footerleft .carteles .cartel, body.lightmode .footerleft .carteles .sub{
+   color: black;
+}
+body.lightmode, body.lightmode, body.lightmode nav ul.menu li a, body.lightmode nav p,
+body.lightmode .dev, body.lightmode .proyects, body.lightmode .pathing, body.lightmode .aboutme, 
+body.lightmode .footercontainer, body.lightmode .ultechs, body.lightmode .ulredes,
+ body.lightmode .tarjetaproyecto, body.lightmode .presentacion,
+ body.lightmode .rightpanel, body.lightmode .boton2, 
+ body.lightmode .proyects .banner, body.lightmode .proyects .vertodosbtn,
+ body.lightmode .footerleft, body.lightmode .footermiddle, body.lightmode .footerright,
+ body.lightmode .footerright, body.lightmode .proyects, body.lightmode .pathing, 
+body.lightmode .aboutme, body.lightmode .ultechs, body.lightmode .boton1, body.lightmode .boton2,
+body.lightmode .footerright h5, body.lightmode .footerright p,
+body.lightmode .footerleft .carteles .cartel, body.lightmode .footerleft .carteles .sub{
+   transition:
+      background-color 0.5s ease,
+      color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease;
+}
+.note-img {
+   opacity: 1;
+   transition: opacity 0.3s ease;
+}
+.note-img.is-changing {
+   opacity: 0;
+}

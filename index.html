@@ -53,12 +53,6 @@
                      automatizadas y escalables con Python impulsadas por IA</div>
                  <button class="boton1" type="button">🚀 Ver Proyectos</button>
                  <button class="boton2" type="button">✉️ Contactar</button>
-                <div class="redes">
-                    <ul class="ulredes">
-                        <li><a href=""><img src="img/in.png" class="logo" alt="instagram"></a></li>
-                        <li><a href=""><img src="img/wsp.png" class="logo" alt="facebook"></a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="rightpanel">
@@ -225,6 +219,11 @@ const visibles = 3;
 // deslizamiento horizontal
 const anchoTarjeta = imagenes.length > 0 ? imagenes[0].getBoundingClientRect().width : 0;
 const gap = parseFloat(getComputedStyle(container).gap) || 0;
+const estilosWrapper = getComputedStyle(cardsWrapper);
+const paddingHorizontal = parseFloat(estilosWrapper.paddingLeft) + parseFloat(estilosWrapper.paddingRight);
+const anchoVentana = cardsWrapper.clientWidth - paddingHorizontal;
+// Centers the visible group without changing card dimensions or carousel step size.
+const offsetCentrado = Math.max(0, (anchoVentana - (visibles * anchoTarjeta + (visibles - 1) * gap)) / 2);
 let currentTranslate = 0;
 let previousTranslate = 0;
 let isDragging = false;
@@ -232,7 +231,7 @@ let didDrag = false;
 const minDragDistance = 40;
 
 function getTranslateForIndex(i) {
-    return -(i * (anchoTarjeta + gap));
+    return offsetCentrado - (i * (anchoTarjeta + gap));
 }
 
 function actualizarCarrusel() {
@@ -331,10 +330,28 @@ actualizarCarrusel();
 
 // botón que controla solo la apariencia interna del switch
 const themeToggleButton = document.querySelector('.theme-toggle');
+const bodyelement = document.querySelector('body');
+const notebook = document.querySelector('.note-img');
 if (themeToggleButton) {
     themeToggleButton.addEventListener('click', () => {
         // alterna la clase visual .dark sin cambiar tema global
         themeToggleButton.classList.toggle('dark');
+        bodyelement.classList.toggle('lightmode');
+        if (notebook) {
+            if (notebook.src.includes("notebook-clara.png")) {
+                notebook.classList.add("is-changing");
+                setTimeout(() => {
+                notebook.src = "img/notebook.png";
+                notebook.classList.remove("is-changing");
+}, 120);
+            } else {
+            notebook.classList.add("is-changing");
+            setTimeout(() => {
+            notebook.src = "img/notebook-clara.png";
+            notebook.classList.remove("is-changing");
+}, 120)
+        }
+        }
     });
 }
 
